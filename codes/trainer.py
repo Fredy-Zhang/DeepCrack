@@ -63,27 +63,27 @@ class DeepCrackTrainer(nn.Module):
 
         return pred_output, pred_fuse5, pred_fuse4, pred_fuse3, pred_fuse2, pred_fuse1,
 
-    def val_op(self, input, target):
+    def val_op(self, input):
         pred_output, pred_fuse5, pred_fuse4, pred_fuse3, pred_fuse2, pred_fuse1, = self.model(input)
 
-        output_loss = self.mask_loss(pred_output.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
-        fuse5_loss = self.mask_loss(pred_fuse5.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
-        fuse4_loss = self.mask_loss(pred_fuse4.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
-        fuse3_loss = self.mask_loss(pred_fuse3.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
-        fuse2_loss = self.mask_loss(pred_fuse2.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
-        fuse1_loss = self.mask_loss(pred_fuse1.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
+        # output_loss = self.mask_loss(pred_output.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
+        # fuse5_loss = self.mask_loss(pred_fuse5.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
+        # fuse4_loss = self.mask_loss(pred_fuse4.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
+        # fuse3_loss = self.mask_loss(pred_fuse3.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
+        # fuse2_loss = self.mask_loss(pred_fuse2.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
+        # fuse1_loss = self.mask_loss(pred_fuse1.view(-1, 1), target.view(-1, 1)) / cfg.train_batch_size
 
-        total_loss = output_loss + fuse5_loss + fuse4_loss + fuse3_loss + fuse2_loss + fuse1_loss
+        # total_loss = output_loss + fuse5_loss + fuse4_loss + fuse3_loss + fuse2_loss + fuse1_loss
 
-        self.log_loss = {
-            'total_loss': total_loss.item(),
-            'output_loss': output_loss.item(),
-            'fuse5_loss': fuse5_loss.item(),
-            'fuse4_loss': fuse4_loss.item(),
-            'fuse3_loss': fuse3_loss.item(),
-            'fuse2_loss': fuse2_loss.item(),
-            'fuse1_loss': fuse1_loss.item()
-        }
+        # self.log_loss = {
+        #     'total_loss': total_loss.item(),
+        #     'output_loss': output_loss.item(),
+        #     'fuse5_loss': fuse5_loss.item(),
+        #     'fuse4_loss': fuse4_loss.item(),
+        #     'fuse3_loss': fuse3_loss.item(),
+        #     'fuse2_loss': fuse2_loss.item(),
+        #     'fuse1_loss': fuse1_loss.item()
+        # }
 
         return pred_output, pred_fuse5, pred_fuse4, pred_fuse3, pred_fuse2, pred_fuse1,
 
